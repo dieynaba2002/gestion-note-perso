@@ -1,1 +1,310 @@
-<p>evaluation works!</p>
+
+<div class="container-scroller">
+    <!-- partial:partials/_sidebar.html -->
+ <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo text-white" href="index.html" style="font-weight: bold; font-size: 1.6em;">G6 ACADEMY</a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+                alt="logo" /></a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item profile">
+            <div class="profile-desc">
+                <div class="profile-pic">
+                    <div class="count-indicator">
+                        <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
+                        <span class="count bg-success"></span>
+                    </div>
+                    <div class="profile-name">
+                        <h5 class="mb-0 font-weight-normal">Dieyna Coly</h5>
+
+                    </div>
+                </div>
+
+            </div>
+        </li>
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="index.html">
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop text-white"></i>
+                </span>
+                <span class="menu-title">Dashboard Professeur</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop text-white"></i>
+                </span>
+                <span class="menu-title">Gestion evaluation</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
+                            evaluations</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false"
+                aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop text-white"></i>
+                </span>
+                <span class="menu-title">Gestion notes</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basics">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
+                           notes</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Liste classe</span>
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+    <div class="container-fluid page-body-wrapper mb-5">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row ">
+         <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+                     alt="logo" /></a>
+         </div>
+         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+             <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                 data-toggle="minimize">
+                 <span class="mdi mdi-menu" style="font-size: 2.5em;"></span>
+             </button>
+             <ul class="navbar-nav w-100">
+                 <li class="nav-item w-100">
+                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" id="search">
+                         <input type="text" class="form-control" placeholder="Rechercher">
+                     </form>
+                 </li>
+             </ul>
+             <ul class="navbar-nav navbar-nav-right">
+           
+ 
+ 
+                 <li class="nav-item dropdown border-left">
+                     <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                         data-toggle="dropdown">
+                         <i class="mdi mdi-bell"></i>
+                         <span class="count bg-danger"></span>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                         aria-labelledby="notificationDropdown">
+                         <h6 class="p-3 mb-0">Notifications</h6>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item preview-item">
+                             <div class="preview-thumbnail">
+                                 <div class="preview-icon bg-dark rounded-circle">
+                                     <i class="mdi mdi-calendar text-success"></i>
+                                 </div>
+                             </div>
+                             <div class="preview-item-content">
+                                 <p class="preview-subject mb-1">Event today</p>
+                                 <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
+                                     today </p>
+                             </div>
+                         </a>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item preview-item">
+                             <div class="preview-thumbnail">
+                                 <div class="preview-icon bg-dark rounded-circle">
+                                     <i class="mdi mdi-settings text-danger"></i>
+                                 </div>
+                             </div>
+                             <div class="preview-item-content">
+                                 <p class="preview-subject mb-1">Settings</p>
+                                 <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                             </div>
+                         </a>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item preview-item">
+                             <div class="preview-thumbnail">
+                                 <div class="preview-icon bg-dark rounded-circle">
+                                     <i class="mdi mdi-link-variant text-warning"></i>
+                                 </div>
+                             </div>
+                             <div class="preview-item-content">
+                                 <p class="preview-subject mb-1">Launch Admin</p>
+                                 <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                             </div>
+                         </a>
+                         <div class="dropdown-divider"></div>
+                         <p class="p-3 mb-0 text-center">See all notifications</p>
+                     </div>
+                 </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                         <div class="navbar-profile">
+                             <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
+                             <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                         </div>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                         aria-labelledby="profileDropdown">
+                         <h6 class="p-3 mb-0">Profil</h6>
+                         <div class="dropdown-divider"></div>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item preview-item">
+                             <div class="preview-thumbnail">
+                                 <div class="preview-icon bg-dark rounded-circle">
+                                     <i class="mdi mdi-logout text-danger"></i>
+                                 </div>
+                             </div>
+                             <div class="preview-item-content">
+                                 <p class="preview-subject mb-1">Se deconnecter</p>
+                             </div>
+                         </a>
+ 
+                     </div>
+                 </li>
+             </ul>
+             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                 data-toggle="offcanvas">
+                 <span class="mdi mdi-format-line-spacing"></span>
+             </button>
+         </div>
+     </nav>
+
+
+     <div class="listeval mt-5 mx-auto">
+           <!-- Button trigger modal -->
+           <button type="button" class="btn boutonajout text-end " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter evaluation
+      </button>
+         <div class="row mt-3">
+            <div class="col-12 grid-margin">
+                <div class="card ">
+                    <div class="card-body ">
+                        <h4 class="card-title text-dark">Liste des evaluations</h4>
+                        <div class="table-responsive" style="color: black;">
+                            <table class="table" style="color: black;">
+                                <thead style="color: black;">
+                                    <tr>
+                                        
+                                        <th style="color: black;"> Matieres </th>
+                                        <th style="color: black;"> Type d'evaluation </th>
+                                        <th style="color: black;"> Semestres </th>
+                                        <th style="color: black;"> Annee Scolaire </th>
+                                        <th style="color: black;">Date </th>
+                                        <th style="color: black;"> Etats</th>
+                                        <th style="color: black;"> Niveaux</th>
+                                        <th style="color: black;"> Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let epreuve of evalRecup">
+                                    <tr>
+                                        <td >
+                                            <i class="bi bi-eye"></i>
+                                            <span class="pl-2">{{epreuve.matiere}}</span>
+                                        </td>
+                                        <td> {{epreuve.type}} </td>
+                                        <td> {{epreuve.semestre}} </td>
+                                        <td> {{epreuve.annee}} </td>
+                                        <td> {{epreuve.jour}} </td>
+                                        
+                                        <td>
+                                            <div class="badge " id="badgeEtat" >{{epreuve.etat}}</div>
+                                        </td>
+                                        <td>
+                                            {{epreuve.classe}}
+                                        </td>
+                                        <td>
+                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='En cours'" (click)="reporterEvaluation(epreuve)">Reporter </div>
+                                            <div class="badge " id="badgeAction"  *ngIf="epreuve.etat=='En cours'" (click)="  supprimer(epreuve)" >Supprimer</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     </div>
+    </div>
+</div>
+
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Ajout d'une evaluation</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="formulaire d-block">
+                    <label class="text-dark">Matieres:</label>
+                    <select class="form-select" name="'mat" aria-label="Default select example" class="w-100 mb-3 h-2" [(ngModel)]="matiere">
+                        <option value="Mathematiques">Mathematiques</option>
+                        <option value="Physique">Physique</option>
+                        <option value="Francais">Francais</option>
+                      </select>
+
+                    <label  class="text-dark">Type d'evaluation:</label>
+                    <select class="form-select" name="'type" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="type">
+                        <option value="Devoir">Devoir</option>
+                        <option value="Examen">Examen</option>
+                      </select>
+                    <label  class="text-dark">Semestre:</label>
+                    <select class="form-select" name='sem' aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="semestre">
+                        <option  value="Semestre1">Semestre1</option>
+                        <option value="Semestre2">Semestre2</option>
+                      </select>
+
+                    <label class="text-dark">Annee Scolaire:</label>
+                    <select class="form-select" name="annee" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="annee">
+                        <option value="2022/2023">2022/2023</option>
+                        <option value="2023/2024">2023/2024</option>
+                      </select>
+                      <label class="text-dark">Classe:</label>
+                      <select class="form-select" name="classe" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="classe">
+                          <option value="63">6e</option>
+                          <option value="5e">5e</option>
+                          <option value="4e">4e</option>
+                          <option value="3e">3e</option>
+                        </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="dateInput" class="form-label text-dark bg-white">Date:</label>
+                  <input type="date" name="date" class="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Date de l'evaluation" [(ngModel)]="jour">
+                </div>
+               
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterEval()">Ajouter</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
