@@ -28,7 +28,7 @@ export class EvaluationComponent implements OnInit {
     this.evalRecup=JSON.parse(localStorage.getItem('eval') || '[]')
     console.log(this.evalRecup)
     
-    if(this.evalRecup.length){
+    if(this.evalRecup.length !=0){
       this.idLastEpreuve=this.evalRecup[this.evalRecup.length-1].idEpreuve
     }
 
