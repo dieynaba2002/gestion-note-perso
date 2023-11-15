@@ -229,8 +229,9 @@
                                             {{epreuve.classe}}
                                         </td>
                                         <td>
+                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='reporté'" data-bs-toggle="modal" data-bs-target="#reprogrammerModal" (click)="chargerInfo(epreuve)">Reprogrammer</div>
                                             <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='En cours'" (click)="reporterEvaluation(epreuve)">Reporter </div>
-                                            <div class="badge " id="badgeAction"  *ngIf="epreuve.etat=='En cours'" (click)="  supprimer(epreuve)" >Supprimer</div>
+                                            <div class="badge " id="badgeAction"  *ngIf="epreuve.etat=='En cours' || epreuve.etat=='reporté'" (click)="  supprimer(epreuve)" >Supprimer</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -303,6 +304,64 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterEval()">Ajouter</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal pour reprogrammer une evaluation -->
+  <div class="modal fade " id="reprogrammerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel" >Reprogrammer une evaluation</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="formulaire d-block">
+                    <label class="text-dark">Matieres:</label>
+                    <select class="form-select" name="'mat" aria-label="Default select example" class="w-100 mb-3 h-2" [(ngModel)]="matiere">
+                        <option value="Mathematiques">Mathematiques</option>
+                        <option value="Physique">Physique</option>
+                        <option value="Francais">Francais</option>
+                      </select>
+
+                    <label  class="text-dark">Type d'evaluation:</label>
+                    <select class="form-select" name="'type" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="type">
+                        <option value="Devoir">Devoir</option>
+                        <option value="Examen">Examen</option>
+                      </select>
+                    <label  class="text-dark">Semestre:</label>
+                    <select class="form-select" name='sem' aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="semestre">
+                        <option  value="Semestre1">Semestre1</option>
+                        <option value="Semestre2">Semestre2</option>
+                      </select>
+
+                    <label class="text-dark">Annee Scolaire:</label>
+                    <select class="form-select" name="annee" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="annee">
+                        <option value="2022/2023">2022/2023</option>
+                        <option value="2023/2024">2023/2024</option>
+                      </select>
+                      <label class="text-dark">Classe:</label>
+                      <select class="form-select" name="classe" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="classe">
+                          <option value="63">6e</option>
+                          <option value="5e">5e</option>
+                          <option value="4e">4e</option>
+                          <option value="3e">3e</option>
+                        </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="dateInput" class="form-label text-dark bg-white">Date:</label>
+                  <input type="date" name="date" class="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Date de l'evaluation" [(ngModel)]="jour">
+                </div>
+               
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="reprogramer()">Ajouter</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
         </div>
       </div>

@@ -13,7 +13,7 @@ export class EvaluationComponent implements OnInit {
    semestre:string='';
    jour:string='';
    classe:string='';
-   hoy=new Date()
+   
 
    idLastEpreuve:number=0;
 
@@ -41,11 +41,12 @@ export class EvaluationComponent implements OnInit {
     this.annee='';
     this.semestre='';
     this.jour=''; 
+    this.classe=''; 
   }
 
   // methode pour ajouter evaluation
   ajouterEval(){
-    if(this.matiere=='' || this.type==''|| this.annee=='' || this.semestre=='' || this.jour==''){
+    if(this.matiere=='' || this.type==''|| this.annee=='' || this.semestre=='' || this.jour=='' || this.classe==''){
       this.showAlert('Oups', 'veuillez renseigner tous les champs', 'error')
     }else{
       const aujourdHui = new Date();
@@ -64,7 +65,8 @@ export class EvaluationComponent implements OnInit {
         semestre:this.semestre,
         jour:this.jour,
         etat:this.textButton,
-        classe:this.classe
+        classe:this.classe,
+        note:[]
       }
       console.log(epreuve);
       this.evalRecup.push(epreuve);
@@ -78,26 +80,34 @@ export class EvaluationComponent implements OnInit {
 // methode pour suprimer une evaluation
   supprimer(parameval:any){
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Etes vous sur de vouloir supprimer cet evaluation?",
+      text: "Etes vous sur de vouloir supprimer cet evaluation? ",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonColor: "#007bff",
+      cancelButtonColor: "#CE6A6B ",
+      confirmButtonText: "oui, supprimer!"
     }).then((result) => {
       if (result.isConfirmed) {
-        parameval.etat=-1
+         // on recupere l'indexe de l'element qu'on veut suprimer
+        const indexElement=this.evalRecup.indexOf(parameval)
+        // on verifie qu'il existe
+        if(indexElement!=-1){
+          //  supprimer 1 élément à partir de l'index spécifié dans la liste
+         this.evalRecup.splice(indexElement, 1);
+         localStorage.setItem('eval', JSON.stringify(this.evalRecup));
+    }
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Felicitations...!",
+          text: "L'evaluation a ete supprimer avec succes",
           icon: "success"
         });
       }
-    }); 
+    });
+   
   }
 
-
+ 
   // methode pour reporter une evaluation
   reporterEvaluation(parameval:any){
     parameval.etat='reporté'
@@ -112,8 +122,30 @@ export class EvaluationComponent implements OnInit {
     })
   }
 
-  isDateAnterieure(date: Date): boolean {
-    const aujourdHui = new Date();
-    return date < aujourdHui;
-  }
+  currentEpreuve:any;
+// methode pour charger info
+chargerInfo(parameval:any){
+  this.currentEpreuve=parameval;
+  this.matiere=parameval.matiere;
+  this.type=parameval.type;
+  this.semestre=parameval.semestre;
+  this.annee=parameval.annee;
+  this.classe=parameval.classe;
+  this.jour=parameval.jour
+
+}
+
+// methode pour reprogrammer
+reprogramer(){
+  this.currentEpreuve.matiere=this.matiere;
+  this.currentEpreuve.type=this.type;
+  this.currentEpreuve.semestre=this.semestre;
+  this.currentEpreuve.annee=this.annee;
+  this.currentEpreuve.classe=this.classe;
+  this.currentEpreuve.jour=this.jour;
+  this.currentEpreuve.etat='En cours';
+  localStorage.setItem('eval', JSON.stringify(this.evalRecup));
+  this.showAlert('Felicitations..', 'evaluation reprogrammer  avec succes', 'success')
+}
+  
 }
