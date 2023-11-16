@@ -15,12 +15,12 @@ export class EvaluationComponent implements OnInit {
    classe:string='';
    
  //les element trouver
-  
-   idLastEpreuve:number=0;
+    listeEvaluations:any;
+    idLastEpreuve:number=0;
 
-  evalRecup:any;
+    evalRecup:any;
 
-  filterValue:any;
+  filtreAnnee:string='';
   textButton:string='';
   ngOnInit() {
     if (!localStorage.getItem('eval')) {
@@ -148,5 +148,15 @@ reprogramer(){
   localStorage.setItem('eval', JSON.stringify(this.evalRecup));
   this.showAlert('Felicitations..', 'evaluation reprogrammer  avec succes', 'success')
 }
-  
+
+
+
+// filtrer evaluation selon l'annee scolaire
+onSearch(){
+  this.listeEvaluations = this.evalRecup.filter(
+    (elt:any) => (elt?.annee.includes(this.filtreAnnee)));
+    console.log(this.listeEvaluations);
+
+}
+
 }

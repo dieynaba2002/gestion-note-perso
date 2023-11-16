@@ -189,14 +189,21 @@
     </div>
     <div class="listeval mt-5 mx-auto">
           <!-- Button trigger modal -->
-          <button type="button" class="btn boutonajout text-end m-5  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn boutonajout text-end mt-5  " data-bs-toggle="modal" data-bs-target="#exampleModal">
            Ajouter evaluation
      </button>
+
+     <div class="filtrs  d-flex justify-content-end">
+         <select class="form-select mb-3 w-50" name="annee" aria-label="Default select example" (change)="onSearch()" [(ngModel)]="filtreAnnee">
+                        <option value="2022/2023" selected>2022/2023</option>
+                        <option value="2023/2024">2023/2024</option>
+                      </select>
+     </div>
         <div class="row mt-3">
            <div class="col-12 grid-margin">
-               <div class="card ">
+               <div class="card  ">
                    <div class="card-body ">
-                       <h4 class="card-title text-dark">Liste des evaluations</h4>
+                       <h4 class="card-title text-dark text-center">Liste des evaluations</h4>
                        <div class="table-responsive" style="color: black;">
                            <table class="table" style="color: black;">
                                <thead style="color: black;">
@@ -212,7 +219,7 @@
                                        <th style="color: black;"> Action</th>
                                    </tr>
                                </thead>
-                               <tbody *ngFor="let epreuve of evalRecup">
+                               <tbody *ngFor="let epreuve of listeEvaluations" >
                                    <tr>
                                        <td >
                                            <span class="pl-2">{{epreuve.matiere}}</span>

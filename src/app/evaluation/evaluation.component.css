@@ -18,3 +18,8 @@ select, input{
     outline: 1px solid #CE6A6B ;
     color: #CE6A6B;
 }
+.card{
+    width: 95%;
+    /* margin-left: -3%; */
+  
+}
