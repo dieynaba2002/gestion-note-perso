@@ -21,5 +21,9 @@ select, input{
 .card{
     width: 95%;
     /* margin-left: -3%; */
+   
   
+}
+.recherche{
+    margin-right: 10%;
 }

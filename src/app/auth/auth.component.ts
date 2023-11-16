@@ -21,13 +21,14 @@ export class AuthComponent implements OnInit {
   // Tableau d'objet
   admin: Admin[] = [];
   // tableau qui recupere notre localstorage
-  tabAdmin:any[] = [];
+  tabAdmin:any ;
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (!localStorage.getItem("admin") ) {
       localStorage.setItem("admin",JSON.stringify(this.admin));
     }
-    console.log(this.admin);
+    console.log(this.tabAdmin);
+    this.tabAdmin=JSON.parse(localStorage.getItem("admin") || "[]");
   }
   constructor(private route: Router) {
     
@@ -85,6 +86,14 @@ export class AuthComponent implements OnInit {
     this.password = "";
   }
 
-  
+  // methode pour se connecter
+  connexion(){
+    if(this.email==''|| this.password==''){
+      this.verifChamps('Oups', 'Vous devez renseigner tous les champs', 'error');      
+    }else if(this.email==this.tabAdmin.email && this.password== this.tabAdmin.password){
+      this.route.navigate(["dashboard"]);
+    }
+  }
+
 
 }
