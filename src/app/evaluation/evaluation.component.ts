@@ -14,12 +14,13 @@ export class EvaluationComponent implements OnInit {
    jour:string='';
    classe:string='';
    
-
+ //les element trouver
+  
    idLastEpreuve:number=0;
 
   evalRecup:any;
 
-
+  filterValue:any;
   textButton:string='';
   ngOnInit() {
     if (!localStorage.getItem('eval')) {
