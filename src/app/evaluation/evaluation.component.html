@@ -237,7 +237,7 @@
                                        </td>
                                        <td>
                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='reporté'" data-bs-toggle="modal" data-bs-target="#reprogrammerModal" (click)="chargerInfo(epreuve)">Reprogrammer</div>
-                                           <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='faite'">Ajouter note</div>
+                                           <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='faite'" [routerLink]="['/gestionnote']">Ajouter note</div>
                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='En cours'" (click)="reporterEvaluation(epreuve)">Reporter </div>
                                            <div class="badge " id="badgeAction"  *ngIf="epreuve.etat=='En cours' || epreuve.etat=='reporté'" (click)="  supprimer(epreuve)" >Supprimer</div>
                                        </td>

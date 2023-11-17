@@ -36,7 +36,7 @@ export class GestionApprenantComponent implements OnInit{
    this.apprenantRecupAdmin=this.apprenantsRecup[0].apprenants
    console.log(this.apprenantRecupAdmin ,' tableau apprenant')
 
-   if(this.apprenantRecupAdmin.length ){
+   if(this.apprenantRecupAdmin.length !=0){
      this.idLastApprenant=this.apprenantRecupAdmin[this.apprenantRecupAdmin.length-1].idApprenant
    }
    

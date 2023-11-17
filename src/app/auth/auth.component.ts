@@ -78,7 +78,7 @@ export class AuthComponent implements OnInit {
         password: this.password,
         profs:[],
         apprenants:[],
-        matiere:[]
+        
       } 
       this.tabAdmin.push(userAdmin);
       console.log(this.tabAdmin);

@@ -7,6 +7,7 @@ import {ListeProfesseurComponent} from './liste-professeur/liste-professeur.comp
 import {GestionApprenantComponent} from './gestion-apprenant/gestion-apprenant.component';
 import { ListeNoteApprenantComponent } from './liste-note-apprenant/liste-note-apprenant.component';
 import { GestionNoteComponent } from './gestion-note/gestion-note.component';
+import { DetailEvaluationComponent } from './detail-evaluation/detail-evaluation.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'gestionapprenant', component:GestionApprenantComponent},
   {path:'listenoteapprenant', component:ListeNoteApprenantComponent},
   {path:'gestionnote', component:GestionNoteComponent},
+  {path:'gestionclasse', component:DetailEvaluationComponent},
 ];
 
 @NgModule({

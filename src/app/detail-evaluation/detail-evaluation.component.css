@@ -1,0 +1,29 @@
+.boutonajout{
+    background-color: #CE6A6B;
+    font-size: 16px;
+    margin-top: 5%;
+}
+select, input{
+    height: 5vh;
+    border: none;
+    border-bottom: 2px solid #CE6A6B ;
+    background-color: white;   
+}
+
+#badgeEtat{
+    outline: 1px solid #007bff ;
+    color: #007bff;
+}
+#badgeAction{
+    outline: 1px solid #CE6A6B ;
+    color: #CE6A6B;
+}
+.card{
+    width: 95%;
+    /* margin-left: -3%; */
+   
+  
+}
+.recherche{
+    margin-right: 10%;
+}

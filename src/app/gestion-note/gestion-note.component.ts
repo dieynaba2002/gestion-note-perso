@@ -23,7 +23,7 @@ export class GestionNoteComponent implements OnInit {
   idLastuserNote:number=0;
 
  notesRecup:any;
-
+  
  filterValue:any;
  ngOnInit() {
    if (!localStorage.getItem('notes')) {

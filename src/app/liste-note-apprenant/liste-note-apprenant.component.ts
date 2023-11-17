@@ -1,12 +1,12 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-liste-note-apprenant',
   templateUrl: './liste-note-apprenant.component.html',
   styleUrls: ['./liste-note-apprenant.component.css']
 })
-export class ListeNoteApprenantComponent {
+export class ListeNoteApprenantComponent implements OnInit{
 
   // les attributs
   // nomComplet: string = "";
@@ -55,7 +55,12 @@ export class ListeNoteApprenantComponent {
       date: "22/02/2022"
     },
   ]
+  recupEval:any;
 
+  ngOnInit(){
+    this.recupEval=JSON.parse(localStorage.getItem('eval')|| '[]')
+    console.log(this.recupEval)
+  }
   onSearch(){
     // Recherche se fait selon le nom ou le prenom 
     this.filteredElement = this.tabNotes.filter((elt: any) => {

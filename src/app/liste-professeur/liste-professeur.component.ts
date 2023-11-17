@@ -37,7 +37,7 @@ export class ListeProfesseurComponent implements OnInit {
    this.profRecup=JSON.parse(localStorage.getItem('admin') || '[]')
    this.tabProfAdmin=this.profRecup[0].profs
    console.log(this.tabProfAdmin ,'liste prof')
-   if(this.tabProfAdmin.length!=0){
+   if(this.tabProfAdmin.length){
      this.idLastProf=this.tabProfAdmin[this.tabProfAdmin.length-1].idProf
    }
    
@@ -71,7 +71,8 @@ export class ListeProfesseurComponent implements OnInit {
        telephone:this.telephone,
        etat:'active',
        password:'passer',
-       role:this.role
+       role:this.role,
+       classe:[]
      }
      console.log(this.tabProfAdmin);
      this.tabProfAdmin.push(Prof);
