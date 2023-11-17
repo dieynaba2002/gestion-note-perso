@@ -55,8 +55,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
-                                    profs</a></li>
+                            <li class="nav-item" [routerLink]="['/listeprofesseur']"> liste des
+                                    profs</li>
                         </ul>
                     </div>
                 </li>
@@ -71,18 +71,18 @@
                     </a>
                     <div class="collapse" id="ui-basics">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
-                                    apprenants</a></li>
+                            <li class="nav-item"  [routerLink]="['/gestionapprenant']"> liste des
+                                    apprenants</li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" href="pages/tables/basic-table.html">
+                <li class="nav-item menu-items d-flex mx-3">
+          
                         <span class="menu-icon">
                             <i class="mdi mdi-table-large text-white"></i>
                         </span>
-                        <span class="menu-title">Liste classe</span>
-                    </a>
+                        <span class="menu-title fs-6">Liste classe</span>
+                    
                 </li>
 
             </ul>
@@ -260,6 +260,10 @@
                         </div>
                     </div>
                     <div class="row ">
+                           <!-- Button trigger modal -->
+          <button type="button" class="btn boutonajout  btn-primary mt-5 ms-5 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter matiere
+      </button>
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
@@ -364,6 +368,31 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
+     <!-- Modal -->
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Ajout  d'une matiere</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="formulaire d-block">
+                    <label class="text-dark">Matieres:</label>
+                    <input class="form-select" name="mat" aria-label="Default select example" class="w-100 mb-3 h-2" [(ngModel)]="matiere">
+                      
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterMatiere()">Ajouter</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

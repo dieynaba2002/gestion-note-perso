@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-liste-professeur',
@@ -25,22 +26,23 @@ export class ListeProfesseurComponent implements OnInit {
   idLastProf:number=0;
 
  profRecup:any;
-
+  tabProfAdmin:any;
  filterValue:any;
  textButton:string='';
- ngOnInit() {
-   if (!localStorage.getItem('profs')) {
-     localStorage.setItem('profs', JSON.stringify(this.profs));
-   }
-   this.profRecup=JSON.parse(localStorage.getItem('profs') || '[]')
-   console.log(this.profRecup)
-   
-   if(this.profRecup.length !=0){
-     this.idLastProf=this.profRecup[this.profRecup.length-1].idProf
-   }
-   
 
- }
+
+
+ ngOnInit() {
+ 
+   this.profRecup=JSON.parse(localStorage.getItem('admin') || '[]')
+   this.tabProfAdmin=this.profRecup[0].profs
+   console.log(this.tabProfAdmin ,'liste prof')
+   if(this.tabProfAdmin.length!=0){
+     this.idLastProf=this.tabProfAdmin[this.tabProfAdmin.length-1].idProf
+   }
+   
+   
+  }
 
  // vider champs
  viderChamps(){
@@ -55,7 +57,7 @@ export class ListeProfesseurComponent implements OnInit {
 
  // methode pour ajouter profuation
  ajouterprof(){
-   if(this.matiere=='' || this.nom==''|| this.annee=='' || this.prenom=='' || this.telephone=='' || this.email==''){
+   if(this.matiere=='' || this.nom==''|| this.annee=='' || this.prenom=='' || this.telephone=='' || this.email=='' || this.role==''){
      this.showAlert('Oups', 'veuillez renseigner tous les champs', 'error')
    }else{
      
@@ -67,11 +69,13 @@ export class ListeProfesseurComponent implements OnInit {
        prenom:this.prenom,
        email:this.email,
        telephone:this.telephone,
-       etat:'active'
+       etat:'active',
+       password:'passer',
+       role:this.role
      }
-     console.log(Prof);
-     this.profRecup.push(Prof);
-     localStorage.setItem('profs', JSON.stringify(this.profRecup))
+     console.log(this.tabProfAdmin);
+     this.tabProfAdmin.push(Prof);
+     localStorage.setItem('admin', JSON.stringify(this.profRecup))
      console.log(this.profRecup)
 
 
@@ -91,21 +95,7 @@ export class ListeProfesseurComponent implements OnInit {
      icon:icon
    })
  }
-// profChoisi:any;
-// // recupere l'objet
-// recup(paramProf: any){
-//   this.profChoisi=paramProf;
 
-// }
-// // methode pour changer le texte du bouton
-//  desactiverProf(){
-//   this.profChoisi.etat='desactive'
-//   localStorage.setItem('profs', JSON.stringify(this.profRecup))
-//  }
-//  activerProf(){
-//   this.profChoisi.etat='active'
-//   localStorage.setItem('profs', JSON.stringify(this.profRecup))
-//  }
 
 toggleEtat(prof: any) {
   prof.etat = (prof.etat === 'active') ? 'inactive' : 'active';

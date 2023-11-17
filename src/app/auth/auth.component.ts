@@ -11,13 +11,18 @@ import { Admin } from '../model/Admin';
 export class AuthComponent implements OnInit {
   
   // les attributs
+  idlastAdmin:number = 0;
+
+  userProfFound:any;
+  userApprenantFound:any;
+
   nom:string= "";
   prenom:string= "";
   email:string= "";
   password: string = "";
 
   formChoice = true;
-
+  adminConnect:any;
   // Tableau d'objet
   admin: Admin[] = [];
   // tableau qui recupere notre localstorage
@@ -27,8 +32,12 @@ export class AuthComponent implements OnInit {
     if (!localStorage.getItem("admin") ) {
       localStorage.setItem("admin",JSON.stringify(this.admin));
     }
-    console.log(this.tabAdmin);
+  
     this.tabAdmin=JSON.parse(localStorage.getItem("admin") || "[]");
+    if(this.tabAdmin.length){
+      this.idlastAdmin=this.tabAdmin[this.tabAdmin.length-1].idAdmin
+    }
+    console.log(this.tabAdmin[0].profs[0].role)
   }
   constructor(private route: Router) {
     
@@ -62,12 +71,14 @@ export class AuthComponent implements OnInit {
     }
     else {
       let userAdmin = {
+        idAdmin:this.idlastAdmin+1,
         nom : this.nom,
         prenom: this.prenom,
         email: this.email,
         password: this.password,
         profs:[],
-        apprenants:[]
+        apprenants:[],
+        matiere:[]
       } 
       this.tabAdmin.push(userAdmin);
       console.log(this.tabAdmin);
@@ -88,12 +99,26 @@ export class AuthComponent implements OnInit {
 
   // methode pour se connecter
   connexion(){
+    console.log( this.tabAdmin[0].apprenants.find((element:any)=> element.email==this.email ))
+    // this.userApprenantFound = this.tabAdmin[0].Apprenants.find((element:any)=> element.email==this.email )
+    this.userProfFound = this.tabAdmin[0].profs.find((element:any)=> element.email==this.email )
     if(this.email==''|| this.password==''){
       this.verifChamps('Oups', 'Vous devez renseigner tous les champs', 'error');      
-    }else if(this.email==this.tabAdmin.email && this.password== this.tabAdmin.password){
-      this.route.navigate(["dashboard"]);
-    }
-  }
+    }else if(this.email==='admin@admin.com' && this.password=== 'admin'){
+        this.route.navigate(['dashboard' ]); 
+    }else{
+        if (this.userProfFound && this.userProfFound.etat=='active' && this.userProfFound.role=='professeur') {
+          this.route.navigate(['evaluation']);
+        }else if(this.tabAdmin[0].apprenants.find((element:any)=> element.email==this.email )){
+          this.route.navigate(['listenoteapprenant']);
 
+        }
+        
+        else{
+          this.verifChamps('Oups', 'Ce compte n\'existe pas', 'error');
+        }
 
+       }
+
+ }
 }

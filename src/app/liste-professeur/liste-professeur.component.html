@@ -2,82 +2,82 @@
 
 <div class="container-scroller">
     <!-- partial:partials/_sidebar.html -->
- <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo text-white" href="index.html" style="font-weight: bold; font-size: 1.6em;">G6 ACADEMY</a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
-                alt="logo" /></a>
-    </div>
-    <ul class="nav">
-        <li class="nav-item profile">
-            <div class="profile-desc">
-                <div class="profile-pic">
-                    <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
-                        <span class="count bg-success"></span>
-                    </div>
-                    <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Dieyna Coly</h5>
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+            <a class="sidebar-brand brand-logo text-white" href="index.html" style="font-weight: bold; font-size: 1.6em;">G6 ACADEMY</a>
+            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+                    alt="logo" /></a>
+        </div>
+        <ul class="nav">
+            <li class="nav-item profile">
+                <div class="profile-desc">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+                            <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">Admin</h5>
 
+                        </div>
                     </div>
+
                 </div>
+            </li>
+            <li class="nav-item nav-category">
+                <span class="nav-link"></span>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="index.html">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-speedometer text-white"></i>
+                    </span>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop text-white"></i>
+                    </span>
+                    <span class="menu-title">Gestion professeur</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item" [routerLink]="['/listeprofesseur']"> liste des
+                                profs</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop text-white"></i>
+                    </span>
+                    <span class="menu-title">Gestion apprenant</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basics">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"  [routerLink]="['/gestionapprenant']"> liste des
+                                apprenants</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item menu-items d-flex mx-3">
+      
+                    <span class="menu-icon">
+                        <i class="mdi mdi-table-large text-white"></i>
+                    </span>
+                    <span class="menu-title fs-6">Liste classe</span>
+                
+            </li>
 
-            </div>
-        </li>
-        <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop text-white"></i>
-                </span>
-                <span class="menu-title">Dashboard Professeur</span>
-            </a>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop text-white"></i>
-                </span>
-                <span class="menu-title">Gestion evaluation</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
-                            evaluations</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop text-white"></i>
-                </span>
-                <span class="menu-title">Gestion notes</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basics">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">liste des
-                           notes</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-                <span class="menu-icon">
-                    <i class="mdi mdi-table-large"></i>
-                </span>
-                <span class="menu-title">Liste classe</span>
-            </a>
-        </li>
-
-    </ul>
-</nav>
+        </ul>
+    </nav>
 
     <div class="container-fluid page-body-wrapper mb-5">
         <!-- partial:partials/_navbar.html -->
@@ -190,7 +190,7 @@
     </div>
     <div class="listeval mt-5 ">
           <!-- Button trigger modal -->
-          <button type="button" class="btn boutonajout text-end " data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn boutonajout text-end " data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 2.5vh;">
            Ajouter professeur
      </button>
      
@@ -213,7 +213,7 @@
                                        <th style="color: black;"> Action</th>
                                    </tr>
                                </thead>
-                               <tbody *ngFor="let epreuve of profRecup">
+                               <tbody *ngFor="let epreuve of tabProfAdmin">
                                    <tr>
                                        <td >
                                            <i class="bi bi-eye"></i>
@@ -286,8 +286,8 @@
                     
                     <label  class="text-dark">Role:</label>
                     <select class="form-select" name='sem' aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="role">
-                        <option  value="Semestre1">Professeur</option>
-                        <option value="Semestre2">Apprenant</option>
+                        <option  value="professeur">Professeur</option>
+                        <option value="apprenant">Apprenant</option>
                       </select>
 
                     <label class="text-dark">Annee Scolaire:</label>
