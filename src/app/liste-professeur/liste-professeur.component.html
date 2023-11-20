@@ -214,11 +214,16 @@
                                    </tr>
                                </thead>
                                <tbody *ngFor="let epreuve of tabProfAdmin">
-                                   <tr>
-                                       <td >
-                                           <i class="bi bi-eye"></i>
-                                           <span class="pl-2">{{epreuve.prenom}}</span>
-                                       </td>
+                                   <tr [ngClass]="{ gris:epreuve.etat=='inactive' }">
+                                      
+                                        <td>
+                                            <a [routerLink]="['/detail-professeur', epreuve.idProf]">
+                                           
+                                              <i class="bi bi-eye"  ></i>
+                                            </a>
+                                            <span class="pl-2">{{epreuve.prenom}}</span>
+                                            </td>
+                                       
                                        <td> {{epreuve.nom}} </td>
                                        <td> {{epreuve.email}} </td>
                                        <td> {{epreuve.annee}} </td>
@@ -229,8 +234,8 @@
                                            {{epreuve.telephone}}
                                        </td>
                                        <td>
-                                           <div class="badge mx-2" id="badgeEtat" >Affecter </div>
-                                            <div  class="badge mx-2" id="badgeAction" (click)="toggleEtat(epreuve)">{{ (epreuve.etat === 'active') ? 'Désactiver' : 'Activer' }}</div>
+                                           <div class="badge mx-2" id="badgeEtat" *ngIf="epreuve.etat== 'active' " >Affecter </div>
+                                            <div  class="badge mx-2" id="badgeAction"  (click)="toggleEtat(epreuve)">{{ (epreuve.etat === 'active') ? 'Désactiver' : 'Activer' }}</div>
                                        </td>
                                    </tr>
                                </tbody>

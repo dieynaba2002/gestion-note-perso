@@ -21,23 +21,72 @@ export class GestionNoteComponent implements OnInit {
 //les element trouver
  
   idLastuserNote:number=0;
+ 
+ 
+  db:any;
+
 
  notesRecup:any;
-  
+//  recuperation du tableau admin
+  tabAdmins:any;
+  tabAdminProf:any;
+  tabAdminApprenant:any;
+ 
+  idProf:any;
  filterValue:any;
- ngOnInit() {
-   if (!localStorage.getItem('notes')) {
-     localStorage.setItem('notes', JSON.stringify(this.notes));
-   }
-   this.notesRecup=JSON.parse(localStorage.getItem('notes') || '[]')
-   console.log(this.notesRecup)
-   this.filteredElements = this.notesRecup;
-   
-   if(this.notesRecup.length !=0){
-     this.idLastuserNote=this.notesRecup[this.notesRecup.length-1].iduserNote
-   }
+  profConnect: any;
 
+  evalChoisi:any;
+
+ constructor(private route: ActivatedRoute) {};
+
+ idEvalChoisi = this.route.snapshot.params['id'];
+
+
+ ngOnInit() {
+   this.tabAdmins=JSON.parse(localStorage.getItem('admin')|| '[]');
+
+   
+   this.tabAdminApprenant=this.tabAdmins[0].apprenants;
+   console.log(this.tabAdminApprenant);
+   this.tabAdminProf=this.tabAdmins[0].profs;
+   const prof = this.findProfForEpreuve(this.idEvalChoisi);
+   
+   this.idProf = prof.idProf;
+   this.profConnect = prof;
+   this.evalChoisi=this.profConnect.evaluation.find((element:any)=> element.idEpreuve==this.idEvalChoisi)
+   
+   console.log(this.evalChoisi)
+
+   this.typeEval=this.evalChoisi.type
+   this.matiere=this.evalChoisi.matiere
+   this.date=this.evalChoisi.jour
+   this.classe=this.evalChoisi.classe;
+   
+  
+   
+   
  }
+
+ 
+ findProfForEpreuve(idEpreuve: string): any {
+  // Logique pour rechercher le professeur associé à l'épreuve
+  // Ceci dépend de la structure de vos données
+
+  if (this.tabAdmins && this.tabAdminProf) {
+    for (const prof of this.tabAdminProf) {
+      if (prof.evaluation && prof.evaluation.find((e:any )=> e.idEpreuve == this.idEvalChoisi)) {
+        return prof;
+      }
+    }
+  }
+
+  return null;
+}
+
+
+
+
 
  // vider champs
  viderChamps(){
@@ -148,26 +197,41 @@ export class GestionNoteComponent implements OnInit {
   this.viderChamps();
   }
 
-filteredElements: any[] = []; 
+  enregisterNote(){
+   for (let i = 0; i < this.tabAdminApprenant.length; i++) {
+    if(this.tabAdminApprenant[i].classe==this.classe){
+      console.log(this.tabAdminApprenant[i].note)
+      console.log(this.tabAdminApprenant[i].nom);
+      console.log(this.tabAdminApprenant[i].prenom);
+      console.log(this.tabAdminApprenant[i].classe);
+      console.log(this.tabAdminApprenant[i].annee);
+      let noteAprenant={
+        idNoteApprenant:this.evalChoisi.note.length+1,
+        nomApprenant:this.tabAdminApprenant[i].nom,
+        prenomApprenant:this.tabAdminApprenant[i].prenom,
+        classeApprenant:this.tabAdminApprenant[i].classe,
+        anneeApprenant:this.tabAdminApprenant[i].annee,
+        note:this.tabAdminApprenant[i].note,
+      
+      }
+      this.evalChoisi.note.push(noteAprenant);
+      localStorage.setItem('admin', JSON.stringify(this.tabAdmins));
+      console.log(this.tabAdmins)
+      
 
- // Recherche
-  onSearch() {
-    const searchTerm = this.filterValue.toLowerCase();
-    this.filteredElements = this.notesRecup.filter((element: any) => {
-      const apprenant = (element.apprenant || '').toLowerCase();
-      const date = (element.date || '').toLowerCase();
-      const matiere = (element.matiere || '').toLowerCase();
-      const typeEval = (element.typeEval || '').toLowerCase();
-      const classe = (element.classe || '').toLowerCase();
-  
-      return (
-        apprenant.includes(searchTerm) ||
-        date.includes(searchTerm) ||
-        matiere.includes(searchTerm) ||
-        typeEval.includes(searchTerm) ||
-        classe.includes(searchTerm) 
-      );
-    });
+    }else if(this.tabAdminApprenant[i]=='') {
+      this.verifChamps('Oups', 'Vous devez renseigner tous les champs', 'error');     
+    }
+    
+   }
   }
+    // fonction du sweetalert
+    verifChamps(title:any, text:any, icon:any) {
+      Swal.fire({
+        title: title,
+        text: text,
+        icon: icon
+      })
+    }
   
 }

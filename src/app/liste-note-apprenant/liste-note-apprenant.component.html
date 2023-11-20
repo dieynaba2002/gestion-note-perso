@@ -63,7 +63,7 @@
                     <ul class="navbar-nav w-100">
                         <li class="nav-item w-100">
                             <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" id="search">
-                                <input type="text" class="form-control" name="filterValue" placeholder="Rechercher" (input)="onSearch()" [(ngModel)]="filterValue">
+                                <input type="text" class="form-control" name="filterValue" placeholder="Rechercher"[(ngModel)]="filterValue">
                             </form>
                         </li>
                     </ul>
@@ -230,22 +230,22 @@
                                                     <th style="color: black;"> Matiere</th>
                                                     <th style="color: black;"> Note </th>
                                                     <th style="color: black;"> Semestre </th>
-                                                    <th style="color: black;"> Professeur </th>
-                                                    <th style="color: black;"> Date </th>
+                                                    <th style="color: black;"> Date de naissance </th>
+                                                    <th style="color: black;"> Annee Scolaire </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let note of filteredElement">
+                                                <tr *ngFor="let note of tabApprenant">
                                                     <td>
-                                                        <img src="assets/images/faces/face1.jpg" alt="image" />
-                                                        <span class="pl-2">{{note.nomComplet}}</span>
+                                                        
+                                                        <span class="pl-2">{{note.prenom}} {{note.nom}}</span>
                                                     </td>
                                                     <td>{{note.classe}}</td>
-                                                    <td>{{note.matiere}}</td>
+                                                    <td>physique</td>
                                                     <td>{{note.note}}</td>
-                                                    <td>{{note.semestre}}</td>
-                                                    <td>{{note.prof}}</td>
-                                                    <td>{{note.date}}</td>
+                                                    <td>semestre1</td>
+                                                    <td>{{note.dateNaiss}}</td>
+                                                    <td>{{note.annee}}</td>
                                                 </tr>
                                                 
                                             </tbody>
@@ -260,6 +260,8 @@
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
+       
+
     </div>
     <!-- container-scroller -->
 

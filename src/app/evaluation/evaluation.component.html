@@ -213,9 +213,9 @@
                                        <th style="color: black;"> Type d'evaluation </th>
                                        <th style="color: black;"> Semestres </th>
                                        <th style="color: black;"> Annee Scolaire </th>
-                                       <th style="color: black;">Date </th>
+                                       <th style="color: black;">Date Eval </th>
                                        <th style="color: black;"> Etats</th>
-                                       <th style="color: black;"> Niveaux</th>
+                                       <th style="color: black;"> Classe</th>
                                        <th style="color: black;"> Action</th>
                                    </tr>
                                </thead>
@@ -237,7 +237,7 @@
                                        </td>
                                        <td>
                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='reporté'" data-bs-toggle="modal" data-bs-target="#reprogrammerModal" (click)="chargerInfo(epreuve)">Reprogrammer</div>
-                                           <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='faite'" [routerLink]="['/gestionnote']">Ajouter note</div>
+                                           <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='faite'" [routerLink]="['/gestionnote', epreuve.idEpreuve]">Ajouter note</div>
                                            <div class="badge mx-2" id="badgeAction" *ngIf="epreuve.etat=='En cours'" (click)="reporterEvaluation(epreuve)">Reporter </div>
                                            <div class="badge " id="badgeAction"  *ngIf="epreuve.etat=='En cours' || epreuve.etat=='reporté'" (click)="  supprimer(epreuve)" >Supprimer</div>
                                        </td>
@@ -272,9 +272,7 @@
                 <div class="formulaire d-block">
                     <label class="text-dark">Matieres:</label>
                     <select class="form-select" name="'mat" aria-label="Default select example" class="w-100 mb-3 h-2" [(ngModel)]="matiere">
-                        <option value="Mathematiques">Mathematiques</option>
-                        <option value="Physique">Physique</option>
-                        <option value="Francais">Francais</option>
+                        <option value="{{matiereProfConnect}}">{{matiereProfConnect}}</option>
                       </select>
 
                     <label  class="text-dark">Type d'evaluation:</label>
@@ -295,7 +293,7 @@
                       </select>
                       <label class="text-dark">Classe:</label>
                       <select class="form-select" name="classe" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="classe">
-                          <option value="63">6e</option>
+                          <option value="6e">6e</option>
                           <option value="5e">5e</option>
                           <option value="4e">4e</option>
                           <option value="3e">3e</option>
@@ -330,9 +328,7 @@
                 <div class="formulaire d-block">
                     <label class="text-dark">Matieres:</label>
                     <select class="form-select" name="'mat" aria-label="Default select example" class="w-100 mb-3 h-2" [(ngModel)]="matiere">
-                        <option value="Mathematiques">Mathematiques</option>
-                        <option value="Physique">Physique</option>
-                        <option value="Francais">Francais</option>
+                        <option value="{{matiereProfConnect}}">{{matiereProfConnect}}</option>
                       </select>
 
                     <label  class="text-dark">Type d'evaluation:</label>
@@ -353,7 +349,7 @@
                       </select>
                       <label class="text-dark">Classe:</label>
                       <select class="form-select" name="classe" aria-label="Default select example" class="w-100 mb-3" [(ngModel)]="classe">
-                          <option value="63">6e</option>
+                          <option value="6e">6e</option>
                           <option value="5e">5e</option>
                           <option value="4e">4e</option>
                           <option value="3e">3e</option>

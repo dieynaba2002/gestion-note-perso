@@ -78,7 +78,7 @@ export class AuthComponent implements OnInit {
         password: this.password,
         profs:[],
         apprenants:[],
-        
+        matiere:[]
       } 
       this.tabAdmin.push(userAdmin);
       console.log(this.tabAdmin);
@@ -99,8 +99,9 @@ export class AuthComponent implements OnInit {
 
   // methode pour se connecter
   connexion(){
-    console.log( this.tabAdmin[0].apprenants.find((element:any)=> element.email==this.email ))
-    // this.userApprenantFound = this.tabAdmin[0].Apprenants.find((element:any)=> element.email==this.email )
+    console.log( this.tabAdmin[0].apprenants)
+    // this.userApprenantFound = this.tabAdmin[0].Apprenants.find((element: any) => element.email == this.email)
+    // console.log(this.userApprenantFound);
     this.userProfFound = this.tabAdmin[0].profs.find((element:any)=> element.email==this.email )
     if(this.email==''|| this.password==''){
       this.verifChamps('Oups', 'Vous devez renseigner tous les champs', 'error');      
@@ -108,15 +109,17 @@ export class AuthComponent implements OnInit {
         this.route.navigate(['dashboard' ]); 
     }else{
         if (this.userProfFound && this.userProfFound.etat=='active' && this.userProfFound.role=='professeur') {
-          this.route.navigate(['evaluation']);
-        }else if(this.tabAdmin[0].apprenants.find((element:any)=> element.email==this.email )){
-          this.route.navigate(['listenoteapprenant']);
-
+          this.route.navigate(['evaluation', this.userProfFound.idProf]);
+        }else if(this.tabAdmin[0].apprenants.find((element:any)=> element.email==this.email&& this.tabAdmin[0].apprenants.find((element: any) => element.email == this.email).etat=='active' && this.tabAdmin[0].apprenants.find((element: any) => element.email == this.email).role=='apprenant')){
+          this.route.navigate(['listenoteapprenant',this.tabAdmin[0].apprenants.find((element: any) => element.email == this.email).idApprenant]);
+          
         }
         
         else{
           this.verifChamps('Oups', 'Ce compte n\'existe pas', 'error');
-        }
+      }
+      
+      
 
        }
 

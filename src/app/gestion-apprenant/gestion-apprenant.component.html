@@ -2,8 +2,8 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <p class="sidebar-brand brand-logo text-white" 
-                style="font-weight: bold; font-size: 1.6em;"  [routerLink]="['/dashboard']">G6 ACADEMY</p>
+            <a class="sidebar-brand brand-logo text-white" href="index.html" style="font-weight: bold; font-size: 1.6em;">G6
+                ACADEMY</a>
             <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
                     alt="logo" /></a>
         </div>
@@ -16,63 +16,63 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h5 class="mb-0 font-weight-normal">Dieyna Coly</h5>
-
+                            <h5 class="mb-0 font-weight-normal">Admin</h5>
+    
                         </div>
                     </div>
-
+    
                 </div>
             </li>
             <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
+                <span class="nav-link"></span>
             </li>
             <li class="nav-item menu-items">
                 <a class="nav-link" href="index.html">
                     <span class="menu-icon">
-                        <i class="mdi mdi-laptop text-white"></i>
+                        <i class="mdi mdi-speedometer text-white"></i>
                     </span>
-                    <span class="menu-title">Dashboard Professeur</span>
+                    <span class="menu-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item menu-items d-flex mx-3">
-               
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <span class="menu-icon">
                         <i class="mdi mdi-laptop text-white"></i>
                     </span>
-                    <span class="menu-title " style="font-size: 14px;">Liste Apprenant</span>
+                    <span class="menu-title">Gestion professeur</span>
                     <i class="menu-arrow"></i>
-                
+                </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item" > Liste Apprenants</li>
+                        <li class="nav-item" [routerLink]="['/listeprofesseur']"> liste des
+                            profs</li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false"
-                    aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false" aria-controls="ui-basic">
                     <span class="menu-icon">
                         <i class="mdi mdi-laptop text-white"></i>
                     </span>
-                    <span class="menu-title">Gestion notes</span>
+                    <span class="menu-title">Gestion apprenant</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-basics">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item" [routerLink]="['/listenoteapprenant']">liste des
-                                notes</li>
+                        <li class="nav-item" [routerLink]="['/gestionapprenant']"> liste des
+                            apprenants</li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/tables/basic-table.html">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-table-large"></i>
-                    </span>
-                    <span class="menu-title">Liste classe</span>
-                </a>
+            <li class="nav-item menu-items d-flex mx-3">
+    
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large text-white"></i>
+                </span>
+                <span class="menu-title fs-6">Liste classe</span>
+    
             </li>
-
+    
         </ul>
     </nav>
 
@@ -214,7 +214,10 @@
                                 <tbody *ngFor="let epreuve of apprenantRecupAdmin">
                                     <tr>
                                         <td class="text-center">
-                                            <i class="bi bi-eye"></i>
+                                            <a [routerLink]="['/detail-apprenant', epreuve.idApprenant]">
+                                           
+                                                <i class="bi bi-eye"  ></i>
+                                              </a>
                                             <span class="pl-2">{{epreuve.prenom}}</span>
                                         </td>
                                         <td class="text-center "> {{epreuve.nom}} </td>
@@ -289,10 +292,10 @@
                         <label class="text-dark">Classe:</label>
                         <select class="form-select" name='classe' aria-label="Default select example" class="w-100 mb-3"
                             [(ngModel)]="classe">
-                            <option value="6eme">6eme</option>
-                            <option value="5eme">5eme</option>
-                            <option value="4eme">4eme</option>
-                            <option value="3eme">3eme</option>
+                            <option value="6e">6eme</option>
+                            <option value="5e">5eme</option>
+                            <option value="4e">4eme</option>
+                            <option value="3e">3eme</option>
                         </select>
 
                         <label class="text-dark">Annee Scolaire:</label>
@@ -326,4 +329,3 @@
         </div>
     </div>
 </div>
-

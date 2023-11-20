@@ -1,12 +1,15 @@
 import { Component,  OnInit  } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal  from 'sweetalert2'
+
+
 @Component({
   selector: 'app-evaluation',
   templateUrl: './evaluation.component.html',
   styleUrls: ['./evaluation.component.css']
 })
 export class EvaluationComponent implements OnInit {
-   evaluation:any[]=[]
+   evaluations:any[]=[]
    matiere:string='';
    type:string='';
    annee:string='';
@@ -15,16 +18,28 @@ export class EvaluationComponent implements OnInit {
    classe:string='';
    
  //les element trouver
-    listeEvaluations:any;
-    idLastEpreuve:number=0;
+  listeEvaluations:any;
+  idLastEpreuve:number=0;
 
-    evalRecup:any;
+  evalRecup: any;
+  
+  tabAdminEval: any;
+
+  tabAdmin: any;
+  matiereProfConnect: any;
+  profConnect: any;
+
+  profConnectEval: any;
 
   filtreAnnee:string='';
   textButton:string='';
+
+
+
+
   ngOnInit() {
     if (!localStorage.getItem('eval')) {
-      localStorage.setItem('eval', JSON.stringify(this.evaluation));
+      localStorage.setItem('eval', JSON.stringify(this.evaluations));
     }
     this.evalRecup=JSON.parse(localStorage.getItem('eval') || '[]')
     console.log(this.evalRecup)
@@ -33,7 +48,23 @@ export class EvaluationComponent implements OnInit {
       this.idLastEpreuve=this.evalRecup[this.evalRecup.length-1].idEpreuve
     }
 
+    this.tabAdmin = JSON.parse(localStorage.getItem('admin') || '[]');
+    
+    this.tabAdminEval = this.tabAdmin[0].profs
+    console.log(this.tabAdminEval)
+
+    this.profConnect = this.tabAdminEval.find((element: any) => element.idProf == this.idProfConnect);
+    this.matiereProfConnect=this.profConnect.matiere
+    this.profConnectEval = this.profConnect.evaluation;
+    console.log(this.matiereProfConnect);
   }
+
+
+
+  constructor(private route: ActivatedRoute, private router: Router) {};
+  idProfConnect = this.route.snapshot.params['id'];
+
+  
 
   // vider champs
   viderChamps(){
@@ -59,7 +90,7 @@ export class EvaluationComponent implements OnInit {
         this.textButton='En cours';
       }
       let epreuve={
-        idEpreuve: this.idLastEpreuve +1,
+        idEpreuve: this.profConnectEval.length + 1,
         matiere:this.matiere,
         type:this.type,
         annee:this.annee,
@@ -70,9 +101,9 @@ export class EvaluationComponent implements OnInit {
         note:[]
       }
       console.log(epreuve);
-      this.evalRecup.push(epreuve);
-      localStorage.setItem('eval', JSON.stringify(this.evalRecup))
-      console.log(this.evalRecup)
+      this.profConnectEval.push(epreuve);
+      localStorage.setItem('admin', JSON.stringify(this.tabAdmin))
+      console.log(this.profConnectEval)
 
 
     }
@@ -91,12 +122,12 @@ export class EvaluationComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
          // on recupere l'indexe de l'element qu'on veut suprimer
-        const indexElement=this.evalRecup.indexOf(parameval)
+        const indexElement=this.profConnectEval.indexOf(parameval)
         // on verifie qu'il existe
         if(indexElement!=-1){
           //  supprimer 1 élément à partir de l'index spécifié dans la liste
-         this.evalRecup.splice(indexElement, 1);
-         localStorage.setItem('eval', JSON.stringify(this.evalRecup));
+         this.profConnectEval.splice(indexElement, 1);
+         localStorage.setItem('eval', JSON.stringify(this.profConnectEval));
     }
         Swal.fire({
           title: "Felicitations...!",
@@ -112,8 +143,9 @@ export class EvaluationComponent implements OnInit {
   // methode pour reporter une evaluation
   reporterEvaluation(parameval:any){
     parameval.etat='reporté'
-    localStorage.setItem('eval', JSON.stringify(this.evalRecup))
+    localStorage.setItem('eval', JSON.stringify(this.profConnectEval))
   }
+
 
   showAlert(title:any, text:any, icon:any){
     Swal.fire({
@@ -145,7 +177,7 @@ reprogramer(){
   this.currentEpreuve.classe=this.classe;
   this.currentEpreuve.jour=this.jour;
   this.currentEpreuve.etat='En cours';
-  localStorage.setItem('eval', JSON.stringify(this.evalRecup));
+  localStorage.setItem('eval', JSON.stringify(this.profConnectEval));
   this.showAlert('Felicitations..', 'evaluation reprogrammer  avec succes', 'success')
 }
 
@@ -153,10 +185,15 @@ reprogramer(){
 
 // filtrer evaluation selon l'annee scolaire
 onSearch(){
-  this.listeEvaluations = this.evalRecup.filter(
+  this.listeEvaluations = this.profConnectEval.filter(
     (elt:any) => (elt?.annee.includes(this.filtreAnnee)));
     console.log(this.listeEvaluations);
 
+}
+
+//Pour la ridirection de ma page liste à detail
+navigateToDetails(id: number): void {
+  this.router.navigate(['/gestionnote', id]);
 }
 
 }

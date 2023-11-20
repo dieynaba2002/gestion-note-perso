@@ -100,7 +100,7 @@
             <ul class="navbar-nav w-100">
                 <li class="nav-item w-100">
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" id="search">
-                        <input type="text" class="form-control" placeholder="Rechercher" name="search" [(ngModel)]="filterValue" (input)="onSearch()">
+                        <input type="text" class="form-control" placeholder="Rechercher" name="search" [(ngModel)]="filterValue">
                     </form>
                 </li>
             </ul>
@@ -192,48 +192,53 @@
         </div>
     </nav>
     
-    <div class="listeval container mt-5" style="margin: 0 auto;">
+    <div class="listeval container mt-5 " style="margin: 0 auto;">
+        <div >
+            <h3 class="text-dark mt-5 text-center" >{{typeEval}} de {{matiere}}  du  {{date  |date: "dd/MM/yyyy"}} de la {{classe}}</h3>
+
+        </div>
+
           <!-- Button trigger modal -->
-          <button type="button" class="btn boutonajout text-end " data-bs-toggle="modal" data-bs-target="#exampleModal">
-           Ajouter une note
+          <button type="button" class="btn boutonajout text-end " (click)="enregisterNote()">
+           Enregistrer
      </button>
         <div class="row mt-3">
            <div class="col-12 grid-margin">
                <div class="card ">
-                   <div class="card-body ">
+                   <div class="card-body">
                         <div class="d-flex justify-content-center">
                             <h2 class="card-title text-dark text-center mt-2">Liste des Notes</h2>
                             <div class="confidentialite-form ml-3 mb-4">g</div>
                         </div>
                        <div class="table-responsive" style="color: black;">
-                           <table class="table" style="color: black;">
+                     
+                           <table class="table" style="color: black;" >
                                <thead style="color: black;">
                                    <tr style="background-color: #ce6a6b; ">
                                        
-                                       <th style="color: white;"> Apprenants </th>
-                                       <th style="color: white;"> Matiere </th>
-                                       <th style="color: white;"> Evaluation</th>
-                                       <th style="color: white;"> Semestre  </th>
+                                       <th style="color: white;"> Nom </th>
+                                       <th style="color: white;"> Prenom </th>
+                                       <th style="color: white;"> Classe</th>
                                        <th style="color: white;"> Année </th>
                                        <th style="color: white;"> Date </th>
                                        <th style="color: white;"> Note </th>
-                                       <th style="color: white;"> Classe </th>
-                                       <th style="color: white;"> Action </th>
                                    </tr>
                                </thead>
-                               <tbody *ngFor="let userNote of filteredElements">
-                                   <tr>
-                                       <td> {{userNote.apprenant}} </td>
-                                       <td> {{userNote.matiere}} </td>
-                                       <td> {{userNote.typeEval}} </td>
-                                       <td> {{userNote.semestre}} </td>
-                                       <td> {{userNote.scolaire}} </td>
-                                       <td> {{userNote.date}} </td>
-                                       <td> {{userNote.note}} </td>
-                                       <td> {{userNote.classe}} </td>
-                                       <div class="ml-3 mt-3" data-bs-toggle="modal" data-bs-target="#modifierModal" (click)="chargerInfo(userNote)">
-                                        <i class="fa-solid fa-pen" style="color: #ce6a6b;"></i>
-                                       </div>
+                              
+                               <tbody *ngFor="let userNote of  tabAdminApprenant ; let i = index">
+                                   <tr *ngIf="userNote.classe==classe">
+                                        <td> {{userNote.nom}} </td>
+                                        <td> {{userNote.prenom}} </td>
+                                        <td> {{userNote.classe}} </td>
+                                        <td> {{userNote.annee}} </td>
+                                        <td> {{userNote.dateNaiss}} </td>
+                                        <td>  
+                                          <form>
+                                         <input type="text" name="note" [(ngModel)]="tabAdminApprenant[i].note" *ngIf="tabAdminApprenant[i].note >= 0 && tabAdminApprenant[i].note <= 20" style="width:50px">
+                                       </form>
+                                      </td>
+
+                                    
                                        </tr>
                                </tbody>
                            </table>

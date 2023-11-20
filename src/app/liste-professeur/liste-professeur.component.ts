@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 
@@ -25,21 +26,24 @@ export class ListeProfesseurComponent implements OnInit {
 
   idLastProf:number=0;
 
- profRecup:any;
+  profRecup:any;
   tabProfAdmin:any;
- filterValue:any;
- textButton:string='';
+  filterValue:any;
+  textButton: string = '';
+  visibleContenue:boolean = true;
+  
 
-
+  constructor(private router: Router) {}
 
  ngOnInit() {
  
    this.profRecup=JSON.parse(localStorage.getItem('admin') || '[]')
    this.tabProfAdmin=this.profRecup[0].profs
    console.log(this.tabProfAdmin ,'liste prof')
-   if(this.tabProfAdmin.length){
+   if(this.tabProfAdmin.length!=0){
      this.idLastProf=this.tabProfAdmin[this.tabProfAdmin.length-1].idProf
    }
+   
    
    
   }
@@ -62,7 +66,7 @@ export class ListeProfesseurComponent implements OnInit {
    }else{
      
      let Prof={
-       idProf: this.idLastProf +1,
+       idProf: this.tabProfAdmin.length + 1,
        matiere:this.matiere,
        nom:this.nom,
        annee:this.annee,
@@ -71,13 +75,15 @@ export class ListeProfesseurComponent implements OnInit {
        telephone:this.telephone,
        etat:'active',
        password:'passer',
-       role:this.role,
-       classe:[]
+       role: this.role,
+       evaluation:[]
      }
      console.log(this.tabProfAdmin);
      this.tabProfAdmin.push(Prof);
      localStorage.setItem('admin', JSON.stringify(this.profRecup))
      console.log(this.profRecup)
+
+     
 
 
    }
@@ -95,12 +101,18 @@ export class ListeProfesseurComponent implements OnInit {
      text:text,
      icon:icon
    })
- }
-
+  }
+  
 
 toggleEtat(prof: any) {
   prof.etat = (prof.etat === 'active') ? 'inactive' : 'active';
+  localStorage.setItem('admin', JSON.stringify(this.profRecup));
   // Vous pouvez ajouter ici la logique pour mettre à jour l'état du professeur dans votre base de données ou tout autre traitement nécessaire
+}
+
+//Pour la ridirection de ma page liste à detail
+navigateToDetails(id: number): void {
+  this.router.navigate(['/detail-professeur', id]);
 }
 
 }
